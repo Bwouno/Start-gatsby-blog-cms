@@ -47,6 +47,13 @@ const BlogIndex = ({ data, location }) => {
                   <small>{post.frontmatter.date}</small>
                 </header>
                 <section>
+                  <img
+                    dangerouslySetInnerHTML={{
+                      __html: post.frontmatter.images || post.excerpt,
+                    }}
+                  >
+                    {(itemProp = "images")}
+                  </img>
                   <p
                     dangerouslySetInnerHTML={{
                       __html: post.frontmatter.description || post.excerpt,
@@ -81,6 +88,7 @@ export const pageQuery = graphql`
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
           title
+          images
           description
         }
       }
